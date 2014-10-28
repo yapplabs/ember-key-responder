@@ -2,6 +2,28 @@
 
 This README outlines the details of collaborating on this Ember addon.
 
+## Usage
+
+* `npm install --save-dev ember-key-responder`
+
+```js
+// app/views/key-reponder-base.js
+import KeyResponderMixin from 'ember-key-responder/mixin';
+
+export default Ember.View.extend({
+  acceptsKeyResponder: true,
+  didInsertElement: function() {
+    this.becomeKeyResponder();
+    this._super();
+  },
+  
+  willDestroyElement: function() {
+    this.resignKeyResponder();
+    this._super();
+  }
+})
+```
+
 ## Installation
 
 * `git clone` this repository
