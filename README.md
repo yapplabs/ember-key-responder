@@ -21,7 +21,7 @@ export default Ember.View.extend({
     this.resignKeyResponder();
     this._super();
   }
-})
+});
 ```
 
 ## Installation
