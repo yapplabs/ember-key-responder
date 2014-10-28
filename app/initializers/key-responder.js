@@ -22,7 +22,7 @@ export default {
 
       if (Ember.$(event.target).closest('.ember-view').length === 0) {
         var keyResponder = container.lookup('key-responder:main');
-        var currentKeyResponder = keyResponder.get('keyResponder.current');
+        var currentKeyResponder = keyResponder.get('current');
         if (currentKeyResponder && currentKeyResponder.get('isVisible')) {
           return currentKeyResponder.respondToKeyEvent(event, currentKeyResponder);
         }
