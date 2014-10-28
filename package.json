@@ -1,6 +1,7 @@
 {
   "name": "ember-key-responder",
-  "version": "0.0.0",
+  "description": "cocoa inspired approach to keyboard event handling in ember"
+  "version": "0.1.0",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -10,7 +11,7 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "https://github.com/stefanpenner/ember-cli",
+  "repository": "https://github.com/yapplabs/ember-key-responder",
   "engines": {
     "node": ">= 0.10.0"
   },
