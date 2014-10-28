@@ -1,6 +1,6 @@
 {
   "name": "ember-key-responder",
-  "description": "cocoa inspired approach to keyboard event handling in ember"
+  "description": "cocoa inspired approach to keyboard event handling in ember",
   "version": "0.1.0",
   "directories": {
     "doc": "doc",
