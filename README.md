@@ -10,7 +10,7 @@ This README outlines the details of collaborating on this Ember addon.
 // app/views/key-reponder-base.js
 import KeyResponderMixin from 'ember-key-responder/mixin';
 
-export default Ember.View.extend({
+export default Ember.View.extend(KeyResponderMixin, {
   acceptsKeyResponder: true,
   didInsertElement: function() {
     this.becomeKeyResponder();
