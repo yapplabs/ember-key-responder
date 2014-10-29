@@ -8,7 +8,6 @@ This README outlines the details of collaborating on this Ember addon.
 
 ```js
 // app/views/key-reponder-base.js
-import KeyResponderMixin from 'ember-key-responder/mixin';
 
 export default Ember.View.extend({
   acceptsKeyResponder: true,
