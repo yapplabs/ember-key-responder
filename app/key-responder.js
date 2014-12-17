@@ -168,8 +168,7 @@ var KeyResponderSupportViewMixin = Ember.Mixin.create({
 
   respondToKeyEvent: function(event) {
     Ember.run(this, function() {
-      var view = get(this, 'keyResponder.current');
-      if (get(view, 'canBecomeKeyResponder')) {
+      if (get(this, 'keyResponder.current.canBecomeKeyResponder')) {
         view.interpretKeyEvents(event);
       }
     });
