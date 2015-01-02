@@ -19,8 +19,42 @@ export default Ember.View.extend({
   willDestroyElement: function() {
     this.resignKeyResponder();
     this._super();
+  },
+  
+  moveUp: function() {
+    // do something
+  },
+  
+  moveDown: function() {
+    // do something
   }
 });
+```
+
+Events:
+
+```js
+export var KEY_EVENTS = {
+  8: 'deleteBackward',
+  9: 'insertTab',
+  13: 'insertNewline',
+  27: 'cancel',
+  32: 'insertSpace',
+  37: 'moveLeft',
+  38: 'moveUp',
+  39: 'moveRight',
+  40: 'moveDown',
+  46: 'deleteForward'
+};
+
+export var MODIFIED_KEY_EVENTS = {
+  8: 'deleteForward',
+  9: 'insertBacktab',
+  37: 'moveLeftAndModifySelection',
+  38: 'moveUpAndModifySelection',
+  39: 'moveRightAndModifySelection',
+  40: 'moveDownAndModifySelection'
+};
 ```
 
 ## Installation
