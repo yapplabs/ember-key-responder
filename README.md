@@ -4,7 +4,7 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Usage
 
-* `npm install --save-dev ember-key-responder`
+* `ember install ember-key-responder`
 
 ```js
 // app/views/key-reponder-base.js
