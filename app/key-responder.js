@@ -25,7 +25,7 @@ var KeyResponder = Ember.ArrayProxy.extend({
 
   current: Ember.computed.readOnly('lastObject'),
   pushView: function(view, wasTriggeredByFocus) {
-    if (!Ember.none(view)) {
+    if (!Ember.isNone(view)) {
       view.trigger('willBecomeKeyResponder', wasTriggeredByFocus);
       this.pushObject(view);
       view.trigger('didBecomeKeyResponder', wasTriggeredByFocus);
