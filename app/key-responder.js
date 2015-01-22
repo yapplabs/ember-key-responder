@@ -20,7 +20,7 @@ var get = Ember.get;
 var KeyResponder = Ember.ArrayProxy.extend({
   init: function() {
     this.set('content', Ember.A());
-    this._super();
+    this._super.apply(this, arguments);
   },
 
   current: Ember.computed.readOnly('lastObject'),
