@@ -22,12 +22,12 @@ export default Ember.Component.extend({
   acceptsKeyResponder: true,
   didInsertElement: function() {
     this.becomeKeyResponder(false /* true: replace | false: pushOnToStack*/);
-    this._super();
+    this._super.apply(this, arguments);
   },
   
   willDestroyElement: function() {
     this.resignKeyResponder();
-    this._super();
+    this._super.apply(this, arguments);
   },
 
   moveUp: function() {
