@@ -34,7 +34,7 @@ export default {
     // Set up a handler on the ApplicationView for keyboard events that were
     // not handled by the current KeyResponder yet
     container.lookupFactory('view:application').reopen({
-      delegateToKeyResponder: function(event) {
+      delegateToKeyResponder: Ember.on('keyUp', function(event) {
         var currentKeyResponder = this.get('keyResponder.current');
         if (currentKeyResponder && currentKeyResponder.get('isVisible')) {
           // check to see if the event target is the keyResponder or the
@@ -47,7 +47,7 @@ export default {
           return currentKeyResponder.respondToKeyEvent(event, currentKeyResponder);
         }
         return true;
-      }.on('keyUp')
+      })
     });
   }
 };
