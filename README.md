@@ -1,5 +1,6 @@
 # Ember-key-responder
 
+
 Cocoa inspried keyResponder for Ember.js.
 
 ember-key-responder will delegate keyEvents to the current keyResponder.  Typically a
@@ -113,6 +114,17 @@ export var MODIFIED_KEY_EVENTS = {
   40: 'moveDownAndModifySelection'
 };
 ```
+
+## Additional
+
+To pause resume the keyresponder
+
+```js
+
+keyResponder.pause();
+keyResponder.resume();
+```
+
 
 ## Installation
 

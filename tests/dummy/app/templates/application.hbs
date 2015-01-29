@@ -1,15 +1,18 @@
 <h2 id='title'>Key Responder Demo</h2>
-
-<div id="responder-info">
-  KeyResponder stack
-  <ol>
-    {{#each view.keyResponder}}
-      <li>{{name}} - {{this}}</li>
-    {{/each}}
-  </ol>
+<div id="responder-info" style="float:left; width: 300px">
+  {{key-responder-info}}
 </div>
 
-<div id="example">
+<div id="events" style="float:left; width: 300px; height: 300px; overflow-y: scroll">
+  event stream ({{events.length}})
+  <ul>
+    {{#each event in events}}
+      <li>{{event.viewName}} - {{event.eventName}}</li>
+    {{/each}}
+  </ul>
+</div>
+
+<div id="example" style="float:left; width: 500px">
   <label> Component C {{input type="checkbox" checked=c}}</label>
   <label> Component D {{input type="checkbox" checked=d}}</label>
 

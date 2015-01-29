@@ -19,6 +19,7 @@ var get = Ember.get;
 */
 var KeyResponder = Ember.ArrayProxy.extend({
   init: function() {
+    this.set('isActive', true);
     this.set('content', Ember.A());
     this._super.apply(this, arguments);
   },
@@ -31,6 +32,14 @@ var KeyResponder = Ember.ArrayProxy.extend({
       view.trigger('didBecomeKeyResponder', wasTriggeredByFocus);
     }
     return view;
+  },
+
+  resume: function() {
+    this.set('isActive', true);
+  },
+
+  pause: function() {
+    this.set('isActive', false);
   },
 
   popView: function(wasTriggeredByFocus) {
@@ -177,8 +186,10 @@ var KeyResponderSupportViewMixin = Ember.Mixin.create({
 
   respondToKeyEvent: function(event) {
     Ember.run(this, function() {
-      if (get(this, 'keyResponder.current.canBecomeKeyResponder')) {
-        get(this, 'keyResponder.current').interpretKeyEvents(event);
+      if (get(this, 'keyResponder.isActive')) {
+        if (get(this, 'keyResponder.current.canBecomeKeyResponder')) {
+          get(this, 'keyResponder.current').interpretKeyEvents(event);
+        }
       }
     });
   },
