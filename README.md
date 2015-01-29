@@ -1,8 +1,73 @@
 # Ember-key-responder
 
-This README outlines the details of collaborating on this Ember addon.
+Cocoa inspried keyResponder for Ember.js.
 
-## Usage
+ember-key-responder will delegate keyEvents to the current keyResponder.  Typically a
+keyResponder is a `view`, or a `component`. As in complex applications various
+keyResponders enter and leave the system, but only 1 keyResponder can be active
+at any given point in time a stack of them is maintained. They top of the stack is
+considered the current keyResponder.
+
+This allows for modals, or other UI components to naturally become the default
+responder, as they enter they are pushed onto the stack, and resign themselves
+as they are dropped from the stack.
+
+## Example
+
+Given, the following components `component-a` and `component-b`
+
+```js
+// component-a.js | component-b.js
+export default Ember.Component.extend({
+  acceptsKeyResponder: true,
+  didInsertElement: function() {
+    this.becomeKeyResponder(false /* true: replace | false: pushOnToStack*/);
+    this._super();
+  },
+  
+  willDestroyElement: function() {
+    this.resignKeyResponder();
+    this._super();
+  },
+
+  moveUp: function() {
+    // do something
+  }
+});
+```
+
+the template layout of:
+
+```hbs
+{{#component-a}
+  {{#if showB}}
+    {{#component-b}
+    {{/component-b}
+
+  {{/if}}
+{{/component-a}
+```
+
+and `showB` is `true
+
+the stack of key responders is
+
+```
+component-b // <= current keyResponder 
+component-a
+```
+
+key events captured will be delegated to `component-b`
+
+if `showB` becomes `false` then `component-b` will be removed and the stack becomes
+
+```
+component-a // <- current keyResponder
+```
+
+at this point in time, key events will be delegated to `component-a`
+
+## Further Usage
 
 * `ember install:npm ember-key-responder`
 
@@ -12,21 +77,13 @@ This README outlines the details of collaborating on this Ember addon.
 export default Ember.View.extend({
   acceptsKeyResponder: true,
   didInsertElement: function() {
-    this.becomeKeyResponder();
+    this.becomeKeyResponder(false /* true: replace | false: pushOnToStack*/);
     this._super();
   },
   
   willDestroyElement: function() {
     this.resignKeyResponder();
     this._super();
-  },
-  
-  moveUp: function() {
-    // do something
-  },
-  
-  moveDown: function() {
-    // do something
   }
 });
 ```
