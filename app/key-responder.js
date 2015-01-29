@@ -91,10 +91,19 @@ var KeyResponderSupportViewMixin = Ember.Mixin.create({
            get(this, 'isVisible');
   }).readOnly(),
 
-  init: function() {
-    this._super.apply(this, arguments);
-    this.on('mouseDown', this, this.becomeKeyResponder);
-  },
+  becomeKeyResponderViaMouseDown: Ember.on('mouseDown',function(evt) {
+    var responder = this.get('keyResponder');
+    if (responder === undefined) { return; }
+
+    Ember.run.later(function() {
+      responder._inEventBubblingPhase = undefined;
+    }, 0);
+
+    if (responder._inEventBubblingPhase === undefined) {
+      responder._inEventBubblingPhase = true;
+      this.becomeKeyResponder(false);
+    }
+  }),
 
   /*
     Sets this view as the target of key events. Call this if you need to make
