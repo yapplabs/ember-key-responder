@@ -1,3 +1,29 @@
-<h2 id='title'>Welcome to Ember.js</h2>
+<h2 id='title'>Key Responder Demo</h2>
 
-{{outlet}}
+<div id="responder-info">
+  KeyResponder stack
+  <ol>
+    {{#each view.keyResponder}}
+      <li>{{name}} - {{this}}</li>
+    {{/each}}
+  </ol>
+</div>
+
+<div id="example">
+  <label> Component C {{input type="checkbox" checked=c}}</label>
+  <label> Component D {{input type="checkbox" checked=d}}</label>
+
+  {{#component-example name="a" class="component component-a"}}
+    {{#if c}}
+      {{#component-example name="c" class="component component-c"}}
+      {{/component-example}}
+    {{/if}}
+
+    {{#component-example name="b"  class="component component-b"}}
+      {{#if d}}
+        {{#component-example name="d" class="component component-d"}}
+        {{/component-example}}
+      {{/if}}
+    {{/component-example}}
+  {{/component-example}}
+</div>
