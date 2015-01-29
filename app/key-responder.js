@@ -92,7 +92,7 @@ var KeyResponderSupportViewMixin = Ember.Mixin.create({
   }).readOnly(),
 
   init: function() {
-    this._super();
+    this._super.apply(this, arguments);
     this.on('mouseDown', this, this.becomeKeyResponder);
   },
 
@@ -192,7 +192,7 @@ Ember.Component.reopen(KeyResponderSupportViewMixin);
 export var KeyResponderInputSupport = Ember.Mixin.create({
   acceptsKeyResponder: true,
   init: function () {
-    this._super();
+    this._super.apply(this, arguments);
     this.on('focusIn', this, this.becomeKeyResponderViaFocus);
     this.on('focusOut', this, this.resignKeyResponderViaBlur);
   },
