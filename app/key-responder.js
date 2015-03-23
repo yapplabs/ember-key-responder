@@ -49,7 +49,9 @@ var KeyResponder = Ember.ArrayProxy.extend({
         view.trigger('willLoseKeyResponder', wasTriggeredByFocus);
       }
       view = this.popObject();
-      view.trigger('didLoseKeyResponder', wasTriggeredByFocus);
+      if (view) {
+        view.trigger('didLoseKeyResponder', wasTriggeredByFocus);
+      }
       return view;
     } else {
       return undefined;
