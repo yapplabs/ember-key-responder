@@ -1,7 +1,8 @@
-# Ember-key-responder
+# ember-key-responder
 
+[![Build Status](https://travis-ci.org/yapplabs/ember-key-responder.svg?branch=master)](https://travis-ci.org/yapplabs/ember-key-responder) [![Ember Observer Score](http://emberobserver.com/badges/ember-key-responder.svg)](http://emberobserver.com/addons/ember-key-responder)
 
-Cocoa inspried keyResponder for Ember.js.
+A component-oriented approach to keyboard shortcuts for Ember, inspired by Cocoa's KeyResponder.
 
 ember-key-responder will delegate keyEvents to the current keyResponder.  Typically a
 keyResponder is a `view`, or a `component`. As in complex applications various
@@ -25,7 +26,7 @@ export default Ember.Component.extend({
     this.becomeKeyResponder(false /* true: replace | false: pushOnToStack*/);
     this._super.apply(this, arguments);
   },
-  
+
   willDestroyElement: function() {
     this.resignKeyResponder();
     this._super.apply(this, arguments);
@@ -54,7 +55,7 @@ and `showB` is `true
 the stack of key responders is
 
 ```
-component-b // <= current keyResponder 
+component-b // <= current keyResponder
 component-a
 ```
 
@@ -81,7 +82,7 @@ export default Ember.View.extend({
     this.becomeKeyResponder(false /* true: replace | false: pushOnToStack*/);
     this._super();
   },
-  
+
   willDestroyElement: function() {
     this.resignKeyResponder();
     this._super();

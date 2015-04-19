@@ -1,6 +1,6 @@
 {
   "name": "ember-key-responder",
-  "description": "cocoa inspired approach to keyboard event handling in ember",
+  "description": "A component-oriented approach to keyboard shortcuts for Ember, inspired by Cocoa's KeyResponder.",
   "version": "0.3.0",
   "directories": {
     "doc": "doc",
