@@ -5,14 +5,6 @@ export default {
 
   initialize: function(instance) {
 
-    //TextField/TextArea are currently uninjectable, so we're going to hack our
-    //way in
-    Ember.TextSupport.reopen({
-      keyResponder: Ember.computed(function() {
-        return this.container.lookup('key-responder:main');
-      }).readOnly()
-    });
-
     // Set up a handler on the document for keyboard events that are not
     // handled by Ember's event dispatcher.
     Ember.$(document).on('keyup.outside_ember_event_delegation', null,
