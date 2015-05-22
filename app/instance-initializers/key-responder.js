@@ -3,23 +3,7 @@ import Ember from 'ember';
 export default {
   name: 'ember-key-responder-instance',
 
-  initialize: function(instance) {
-
-    // Set up a handler on the document for keyboard events that are not
-    // handled by Ember's event dispatcher.
-    Ember.$(document).on('keyup.outside_ember_event_delegation', null,
-                         function(event) {
-
-      if (Ember.$(event.target).closest('.ember-view').length === 0) {
-        var keyResponder = instance.container.lookup('key-responder:main');
-        var currentKeyResponder = keyResponder.get('current');
-        if (currentKeyResponder && currentKeyResponder.get('isVisible')) {
-          return currentKeyResponder.respondToKeyEvent(event, currentKeyResponder);
-        }
-      }
-
-      return true;
-    });
+  initialize(instance) {
 
     // Set up a handler on the ApplicationView for keyboard events that were
     // not handled by the current KeyResponder yet
