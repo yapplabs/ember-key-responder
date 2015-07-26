@@ -5,7 +5,7 @@ export default {
 
   initialize(container, instance) {
     // Handle 1.12.x case, where signature is
-    //  initialize(container) {...}
+    //  initialize(instance) {...}
     if (typeof instance === 'undefined') {
       instance = container;
       container = instance.container;
