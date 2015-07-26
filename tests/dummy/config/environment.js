@@ -12,7 +12,9 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
+    contentSecurityPolicy: {
+      'style-src': "'self' 'unsafe-inline'"
+    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -26,7 +28,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
-
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';

@@ -6,7 +6,7 @@
 <div id="events" style="float:left; width: 300px; height: 300px; overflow-y: scroll">
   event stream ({{events.length}})
   <ul>
-    {{#each event in events}}
+    {{#each events as |event|}}
       <li>{{event.viewName}} - {{event.eventName}}</li>
     {{/each}}
   </ul>

@@ -8,19 +8,23 @@ module.exports = {
     {
       name: 'ember-1.10',
       dependencies: {
-        ember: '~1.10.0'
+        ember: '~1.10.0',
+        'ember-load-initializers': 'ember-cli/ember-load-initializers#0.0.2'
       },
       resolutions: {
-        ember: '~1.10.0'
+        ember: '~1.10.0',
+        'ember-load-initializers': 'ember-cli/ember-load-initializers#0.0.2'
       }
     },
     {
       name: 'ember-1.11',
       dependencies: {
-        ember: '~1.11.0'
+        ember: '~1.11.0',
+        'ember-load-initializers': 'ember-cli/ember-load-initializers#0.0.2'
       },
       resolutions: {
-        ember: '~1.11.0'
+        ember: '~1.11.0',
+        'ember-load-initializers': 'ember-cli/ember-load-initializers#0.0.2'
       }
     },
     {

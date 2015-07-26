@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import keyResponderInstanceInitializer from '../instance-initializers/key-responder';
 
-var EMBER_VERSION_REGEX = /^([0-9]+)\.([0-9]+)\.([0-9]+)(?:(?:\-(alpha|beta)\.([0-9]+)(?:\.([0-9]+))?)?)?(?:\+(canary))?(?:\.([0-9abcdef]+))?$/;
+var EMBER_VERSION_REGEX = /^([0-9]+)\.([0-9]+)\.([0-9]+)(?:(?:\-(alpha|beta)\.([0-9]+)(?:\.([0-9]+))?)?)?(?:\+(canary))?(?:\.([0-9abcdef]+))?(?:\-([A-Za-z0-9\.\-]+))?(?:\+([A-Za-z0-9\.\-]+))?$/;
+
 /**
  * VERSION_INFO[i] is as follows:
  *
@@ -22,7 +23,8 @@ export default {
   name: 'ember-key-responder',
 
   initialize(registry, application) {
-    var isPre110 = parseInt(versionInfo[1], 10) < 2 && parseInt(versionInfo[2], 10) < 11;
+    var isPre111 = parseInt(VERSION_INFO[1], 10) < 2 && parseInt(VERSION_INFO[2], 10) < 12;
+    const container = application.__container__;
 
     application.inject('view', 'keyResponder', 'key-responder:main');
     application.inject('component', 'keyResponder', 'key-responder:main');
@@ -40,7 +42,7 @@ export default {
     Ember.$(document).on('keyup.outside_ember_event_delegation', null, event => {
 
       if (Ember.$(event.target).closest('.ember-view').length === 0) {
-        var keyResponder = instance.container.lookup('key-responder:main');
+        var keyResponder = container.lookup('key-responder:main');
         var currentKeyResponder = keyResponder.get('current');
         if (currentKeyResponder && currentKeyResponder.get('isVisible')) {
           return currentKeyResponder.respondToKeyEvent(event, currentKeyResponder);
@@ -50,9 +52,9 @@ export default {
       return true;
     });
 
-    if (isPre110) {
-      // For versions before 1.11.0, we have to call the instanceInitializer
-      keyResponderInstanceInitializer.initializer(registry, application);
+    if (isPre111) {
+      // For versions before 1.12.0, we have to call the instanceInitializer
+      keyResponderInstanceInitializer.initialize(registry, application);
     }
   }
 };

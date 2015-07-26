@@ -3,11 +3,16 @@ import Ember from 'ember';
 export default {
   name: 'ember-key-responder-instance',
 
-  initialize(instance) {
-
+  initialize(container, instance) {
+    // Handle 1.12.x case, where signature is
+    //  initialize(instance) {...}
+    if (typeof instance === 'undefined') {
+      instance = container;
+      container = instance.container;
+    }
     // Set up a handler on the ApplicationView for keyboard events that were
     // not handled by the current KeyResponder yet
-    instance.container.lookupFactory('view:application').reopen({
+    container.lookupFactory('view:application').reopen({
       delegateToKeyResponder: Ember.on('keyUp', function(event) {
         var currentKeyResponder = this.get('keyResponder.current');
         if (currentKeyResponder && currentKeyResponder.get('isVisible')) {
