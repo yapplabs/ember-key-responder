@@ -12,7 +12,7 @@ export default {
     }
     // Set up a handler on the ApplicationView for keyboard events that were
     // not handled by the current KeyResponder yet
-    container.lookupFactory('view:application').reopen({
+    container.lookup('view:application').reopen({
       delegateToKeyResponder: Ember.on('keyUp', function(event) {
         var currentKeyResponder = this.get('keyResponder.current');
         if (currentKeyResponder && currentKeyResponder.get('isVisible')) {
