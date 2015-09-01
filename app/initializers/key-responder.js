@@ -22,7 +22,10 @@ var VERSION_INFO = EMBER_VERSION_REGEX.exec(Ember.VERSION);
 export default {
   name: 'ember-key-responder',
 
-  initialize(registry, application) {
+  initialize() {
+    const application = arguments[1] || arguments[0];
+    const registry = !!arguments[1] ? arguments[0] : application.registry;
+    
     var isPre111 = parseInt(VERSION_INFO[1], 10) < 2 && parseInt(VERSION_INFO[2], 10) < 12;
     const container = application.__container__;
 
