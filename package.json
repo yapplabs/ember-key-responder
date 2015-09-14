@@ -35,7 +35,7 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.4",
     "ember-legacy-views": "0.2.0",
-    "ember-try": "0.0.6",
+    "ember-try": "0.0.8",
     "rsvp": "^3.0.14"
   },
   "keywords": [

@@ -4,12 +4,12 @@ export default Ember.Component.extend({
 acceptsKeyResponder: true,
   didInsertElement: function() {
     this.becomeKeyResponder(false /* true: replace | false: pushOnToStack*/);
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   },
 
   willDestroyElement: function() {
     this.resignKeyResponder();
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   },
 
   deleteBackward: log('deleteBackward'),
