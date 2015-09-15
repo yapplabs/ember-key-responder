@@ -4,19 +4,14 @@
 
 A component-oriented approach to keyboard shortcuts for Ember, inspired by Cocoa's KeyResponder.
 
-ember-key-responder will delegate keyEvents to the current keyResponder.  Typically a
-keyResponder is a `view`, or a `component`. As in complex applications various
-keyResponders enter and leave the system, but only 1 keyResponder can be active
-at any given point in time a stack of them is maintained. They top of the stack is
-considered the current keyResponder.
+ember-key-responder will delegate keyEvents to the current keyResponder.  Typically a keyResponder is a `view`, or a `component`. In complex applications, various keyResponders enter and leave the system. Since only 1 keyResponder can be active at any given point in time, a stack of them is maintained. The top of the stack is considered the current keyResponder.
 
-This allows for modals, or other UI components to naturally become the default
-responder, as they enter they are pushed onto the stack, and resign themselves
-as they are dropped from the stack.
+This allows for modals or other UI components to naturally become the default
+responder. As they enter they are pushed onto the stack. When they resign themselves they are dropped from the stack.
 
 ## Example
 
-Given, the following components `component-a` and `component-b`
+Given the following components `component-a` and `component-b`
 
 ```js
 // component-a.js | component-b.js
@@ -38,19 +33,18 @@ export default Ember.Component.extend({
 });
 ```
 
-the template layout of:
+the template layout of
 
 ```hbs
 {{#component-a}
   {{#if showB}}
     {{#component-b}
     {{/component-b}
-
   {{/if}}
 {{/component-a}
 ```
 
-and `showB` is `true
+and `showB` is `true`
 
 the stack of key responders is
 
@@ -59,19 +53,19 @@ component-b // <= current keyResponder
 component-a
 ```
 
-key events captured will be delegated to `component-b`
+Key events captured will be delegated to `component-b`.
 
-if `showB` becomes `false` then `component-b` will be removed and the stack becomes
+If `showB` becomes `false` then `component-b` will be removed and the stack becomes
 
 ```
 component-a // <- current keyResponder
 ```
 
-at this point in time, key events will be delegated to `component-a`
+At this point in time key events will be delegated to `component-a`.
 
 ## Further Usage
 
-* `ember install:npm ember-key-responder`
+`ember install:npm ember-key-responder`
 
 ```js
 // app/views/key-reponder-base.js
@@ -118,10 +112,9 @@ export var MODIFIED_KEY_EVENTS = {
 
 ## Additional
 
-To pause resume the keyresponder
+To pause or resume the keyResponder:
 
 ```js
-
 keyResponder.pause();
 keyResponder.resume();
 ```

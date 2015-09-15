@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var get = Ember.get;
+const { get, computed, isNone } = Ember;
 
 /*
   Holds a stack of key responder views. With this we can neatly handle
@@ -17,18 +17,19 @@ var get = Ember.get;
   So if the previously focused view was e.g. in the middle of some edit
   operation, it shouldn't cancel that operation.
 */
-var KeyResponder = Ember.ArrayProxy.extend({
+var KeyResponder = Ember.Object.extend({
   init: function() {
     this.set('isActive', true);
-    this.set('content', Ember.A());
+    this.set('stack', Ember.A());
     this._super.apply(this, arguments);
   },
 
-  current: Ember.computed.readOnly('lastObject'),
+  current: computed.readOnly('stack.lastObject'),
   pushView: function(view, wasTriggeredByFocus) {
-    if (!Ember.isNone(view)) {
+    if (!isNone(view)) {
       view.trigger('willBecomeKeyResponder', wasTriggeredByFocus);
-      this.pushObject(view);
+      const stack = get(this, 'stack');
+      stack.pushObject(view);
       view.trigger('didBecomeKeyResponder', wasTriggeredByFocus);
     }
     return view;
@@ -43,12 +44,13 @@ var KeyResponder = Ember.ArrayProxy.extend({
   },
 
   popView: function(wasTriggeredByFocus) {
-    if (get(this, 'length') > 0) {
+    const stack = get(this, 'stack');
+    if (get(this, 'stack.length') > 0) {
       var view = get(this, 'current');
       if (view) {
         view.trigger('willLoseKeyResponder', wasTriggeredByFocus);
       }
-      view = this.popObject();
+      view = stack.popObject();
       if (view) {
         view.trigger('didLoseKeyResponder', wasTriggeredByFocus);
       }
@@ -94,7 +96,7 @@ var KeyResponderSupportViewMixin = Ember.Mixin.create({
   // Set to true in your view if you want to accept key responder status (which
   // is needed for handling key events)
   acceptsKeyResponder: false,
-  canBecomeKeyResponder: Ember.computed('acceptsKeyResponder',
+  canBecomeKeyResponder: computed('acceptsKeyResponder',
                                         'disabled',
                                         'isVisible', function() {
     return get(this, 'acceptsKeyResponder') &&
