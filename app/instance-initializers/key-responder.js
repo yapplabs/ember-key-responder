@@ -33,7 +33,15 @@ export default {
     let ApplicationView = container.lookupFactory ?
       container.lookupFactory('view:application') :
       instance.resolveRegistration('view:application');
-    
+
     ApplicationView = ApplicationView.extend(ApplicationViewMixin);
+
+    //TextField/TextArea are currently uninjectable, so we're going to hack our
+    //way in
+    Ember.TextSupport.reopen({
+      keyResponder: Ember.computed(function() {
+        return container.lookup('key-responder:main');
+      }).readOnly()
+    });
   }
 };

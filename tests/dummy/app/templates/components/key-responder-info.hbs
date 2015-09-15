@@ -2,7 +2,7 @@ KeyResponder stack active:
 {{keyResponder.isActive}}
 {{input type="checkbox" checked=keyResponder.isActive}}
 <ol>
-  {{#each keyResponder as |resp|}}
+  {{#each keyResponder.stack as |resp|}}
     <li>{{resp.name}} - {{resp}}</li>
   {{/each}}
-  </ol>
+</ol>

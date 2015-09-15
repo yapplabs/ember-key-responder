@@ -25,20 +25,11 @@ export default {
   initialize() {
     const application = arguments[1] || arguments[0];
     const registry = !!arguments[1] ? arguments[0] : application.registry;
-    
-    var isPre111 = parseInt(VERSION_INFO[1], 10) < 2 && parseInt(VERSION_INFO[2], 10) < 12;
+    var isPre1dot12 = parseInt(VERSION_INFO[1], 10) < 2 && parseInt(VERSION_INFO[2], 10) < 12;
     const container = application.__container__;
 
     application.inject('view', 'keyResponder', 'key-responder:main');
     application.inject('component', 'keyResponder', 'key-responder:main');
-
-    //TextField/TextArea are currently uninjectable, so we're going to hack our
-    //way in
-    Ember.TextSupport.reopen({
-      keyResponder: Ember.computed(function() {
-        return this.registry.lookup('key-responder:main');
-      }).readOnly()
-    });
 
     // Set up a handler on the document for keyboard events that are not
     // handled by Ember's event dispatcher.
@@ -55,7 +46,7 @@ export default {
       return true;
     });
 
-    if (isPre111) {
+    if (isPre1dot12) {
       // For versions before 1.12.0, we have to call the instanceInitializer
       keyResponderInstanceInitializer.initialize(registry, application);
     }
