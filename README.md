@@ -1,4 +1,10 @@
-# ember-key-responder
+# DEPRECATED - ember-key-responder
+
+---
+
+**NOTE:** This addon is no longer maintained. Please use [ember-keyboard](https://github.com/null-null-null/ember-keyboard) instead.
+
+---
 
 [![Build Status](https://travis-ci.org/yapplabs/ember-key-responder.svg?branch=master)](https://travis-ci.org/yapplabs/ember-key-responder) [![Ember Observer Score](http://emberobserver.com/badges/ember-key-responder.svg)](http://emberobserver.com/addons/ember-key-responder)
 
