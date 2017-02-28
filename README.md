@@ -2,7 +2,7 @@
 
 ---
 
-**NOTE:** This addon is no longer maintained. Please use [ember-keyboard](https://github.com/null-null-null/ember-keyboard) instead.
+**NOTE:** This addon is no longer maintained. Please use [`ember-keyboard`](https://github.com/null-null-null/ember-keyboard) mixin or  [`ember-key-manager`](https://github.com/IcarusWorks/ember-key-manager/) service instead.
 
 ---
 
