@@ -76,7 +76,7 @@ At this point in time key events will be delegated to `component-a`.
 ```js
 // app/views/key-reponder-base.js
 
-export default Ember.View.extend({
+export default Ember.View.extend(KeyResponderMixin, {
   acceptsKeyResponder: true,
   didInsertElement: function() {
     this.becomeKeyResponder(false /* true: replace | false: pushOnToStack*/);
